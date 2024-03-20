@@ -124,27 +124,33 @@ if choice=="Login":
                         if choice2=="K-Nearest Neighbors":
                             test_prediction = model[0].predict(tdata)
                             query=test_prediction[0]
-                            st.success(query)
+                            #st.success(query)
                         if choice2=="SVM":
                             test_prediction = model[1].predict(tdata)
                             query=test_prediction[0]
-                            st.success(query)                 
+                            #st.success(query)                 
                         if choice2=="Decision Tree": 
                             test_prediction = model[2].predict(tdata)
                             query=test_prediction[0]
-                            st.success(query)
+                            #st.success(query)
                         if choice2=="Random Forest":
                             test_prediction = model[3].predict(tdata)
                             query=test_prediction[0]
-                            st.success(query)
+                            #st.success(query)
                         if choice2=="Naive Bayes":
                             test_prediction = model[4].predict(tdata)
                             query=test_prediction[0]
-                            st.success(query)
+                            #st.success(query)
                         if choice2=="ExtraTreesClassifier":
                             test_prediction = model[5].predict(tdata)
                             query=test_prediction[0]
-                            st.success(query)
+                            #st.success(query)
+                        if str(query)=="1":
+                            st.error("Fake User")
+                        else:
+                            st.success("Real User")
+                            
+                            
                             
                     
             else:
