@@ -5,26 +5,26 @@ import pandas as pd
 import pickle
 import bz2
 st.set_page_config(page_title="instgram spammer",page_icon="fevicon.jpg",layout="centered",initial_sidebar_state="auto",menu_items=None)
-# def set_bg_hack_url():
-#     '''
-#     A function to unpack an image from url and set as bg.
-#     Returns
-#     -------
-#     The background.
-#     '''
+def set_bg_hack_url():
+     '''
+     A function to unpack an image from url and set as bg.
+     Returns
+     -------
+     The background.
+     '''
         
-#     st.markdown(
-#           f"""
-#           <style>
-#           .stApp {{
-#               background: url("https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3Y1NDZiYXRjaDMtbXludC0zMS1iYWRnZXdhdGVyY29sb3JfMS5qcGc.jpg");
-#               background-size: cover
-#           }}
-#           </style>
-#           """,
-#           unsafe_allow_html=True
-#       )
-# set_bg_hack_url()
+     st.markdown(
+           f"""
+           <style>
+          .stApp {{
+              background: url("https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3Y1NDZiYXRjaDMtbXludC0zMS1iYWRnZXdhdGVyY29sb3JfMS5qcGc.jpg");
+              background-size: cover
+          }}
+          </style>
+          """,
+          unsafe_allow_html=True
+      )
+set_bg_hack_url()
 
 conn = sqlite3.connect('data.db')
 c = conn.cursor()
@@ -42,9 +42,7 @@ def view_all_users():
 	c.execute('SELECT * FROM userstable')
 	data = c.fetchall()
 	return data
-def delete_user(Email):
-    c.execute("DELETE FROM userstable WHERE Email="+"'"+Email+"'")
-    conn.commit()
+
 
 
 menu = ["Home","Login","SignUp","Contact us"]
@@ -52,7 +50,7 @@ choice = st.sidebar.selectbox("Menu",menu)
 
 
 if choice=="Home":
-    st.subheader("Home Page")
+    st.subheader("WELCOME TO THE SCREEN")
 if choice=="SignUp":
         Fname = st.text_input("First Name")
         Lname = st.text_input("Last Name")
@@ -82,20 +80,19 @@ if choice=="Login":
     Email = st.sidebar.text_input("Email")
     Password = st.sidebar.text_input("Password",type="password")
     b1=st.sidebar.checkbox("Login")
-    Email1=st.text_input("Delete Email")
-    if st.button('Delete'):
-     delete_user(Email1)
+    
+   
     if b1:
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
         if re.fullmatch(regex, Email):
             result = login_user(Email,Password)
             if result:
-                st.success("Logged In as {}".format(Email))
-                user_result = view_all_users()
-                clean_db = pd.DataFrame(user_result,columns=["FirstName","LastName","Mobile","City","Email","password","Cpassword"])
-                st.dataframe(clean_db)
-                result = login_user(Email,Password)
-                if result:
+                if Email=="a@a.com":
+                   st.success("Logged In as {}".format(Email))
+                   user_result = view_all_users()
+                   clean_db = pd.DataFrame(user_result,columns=["FirstName","LastName","Mobile","City","Email","password","Cpassword"])
+                   st.dataframe(clean_db)
+                else:
                     st.success("Logged In as {}".format(Email))
                     menu2 = ["SVM","K-Nearest Neighbors", "Naive Bayes",
                              "Decision Tree", "Random Forest",
@@ -120,15 +117,16 @@ if choice=="Login":
                               has_guides,has_external_url] 
                     b2=st.button("Predict")
                     model=pickle.load(open("models.pkl",'rb'))
-                    if b2:                        
+                    if b2:  
                         df = pd.DataFrame([my_array], 
                                           columns=['edge_followed_by','edge_follow','username_length','username_has_number',
-                                                    'full_name_has_number','full_name_length','is_private',
-                                                    'is_joined_recently','has_channel','is_business_account',
-                                                    'has_guides','has_external_url'])
-                      
-                        model=pickle.load(open("models.pkl",'rb'))
+                              'full_name_has_number','full_name_length','is_private',
+                              'is_joined_recently','has_channel','is_business_account',
+                              'has_guides','has_external_url'])
+                        
+                        
                         tdata=df.to_numpy()
+                       
                         #st.write(tdata)
                         if choice2=="K-Nearest Neighbors":
                             test_prediction = model[0].predict(tdata)
