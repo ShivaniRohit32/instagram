@@ -118,14 +118,7 @@ if choice=="Login":
                     b2=st.button("Predict")
                     model=pickle.load(open("models.pkl",'rb'))
                     if b2:  
-                        df = pd.DataFrame([my_array], 
-                                          columns=['edge_followed_by','edge_follow','username_length','username_has_number',
-                              'full_name_has_number','full_name_length','is_private',
-                              'is_joined_recently','has_channel','is_business_account',
-                              'has_guides','has_external_url'])
-                        
-                        
-                        tdata=df.to_numpy()
+                        tdata=[my_array]
                        
                         #st.write(tdata)
                         if choice2=="K-Nearest Neighbors":
