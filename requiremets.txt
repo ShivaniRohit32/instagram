@@ -1,3 +1,2 @@
-sklearn
 scikit-learn==1.0.2
 imbalanced-learn==1.7.2
