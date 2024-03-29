@@ -17,7 +17,7 @@ def set_bg_hack_url():
            f"""
            <style>
           .stApp {{
-              background: url("https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3Y1NDZiYXRjaDMtbXludC0zMS1iYWRnZXdhdGVyY29sb3JfMS5qcGc.jpg");
+              background: url("https://img.freepik.com/premium-photo/3d-instagram-application-logo-background-instagram-social-media-platform_184826-341.jpg?w=1060");
               background-size: cover
           }}
           </style>
@@ -50,7 +50,7 @@ choice = st.sidebar.selectbox("Menu",menu)
 
 
 if choice=="Home":
-    st.subheader("WELCOME TO THE SCREEN")
+    st.subheader("INSTAGRAM FAKE SPAMMER")
 if choice=="SignUp":
         Fname = st.text_input("First Name")
         Lname = st.text_input("Last Name")
